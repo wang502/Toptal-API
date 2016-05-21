@@ -1,6 +1,8 @@
 BASE = "http://toptal.com"
 BLOG = "/blog"
 RESUME = "/resume"
+SEARCH_BASE = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU&cx=003141353161291263905%3Avli4gva3h44&q="
+#redis&start=1&num=10"
 
 topics = {
     "backend" : "https://www.toptal.com/blog/back-end",
