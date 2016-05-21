@@ -6,75 +6,127 @@ $By Seth (Xiaohui) Wang
 $email sethwang199418@gmail.com
 """
 
-from constants import BASE, BLOG, SEARCH_BASE
+from constants import BASE, BLOG, SEARCH_BASE, topics
+from utils import get_response, Soup
 from bs4 import BeautifulSoup
 import httplib2
-import io, json, os
+import io, json, os, re
 
 class Toptal(object):
 
     def __init__(self):
         self.BASE_URL = BASE
         self.SEARCH_BASE = SEARCH_BASE
-        self.http = httplib2.Http()
+        # self.http = httplib2.Http()
 
-    def search_blog(self, keyword, count):
-        user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
-        headers = { 'User-Agent' : user_agent }
-        # search from
-        start = 1
+    def search(self, keyword, start, count):
+        # construct search URL
         url = self.SEARCH_BASE + keyword + "&start=" + str(start) + "&count=" + str(count)
-        status, response = self.http.request(url, 'GET', None, headers)
+        # get http response
+        response = get_response(url)
+        # convert to json object
         json_res = json.loads(response)
         items = json_res["items"]
 
         result = []
         for item in items:
-            b = Blog(item["formattedUrl"], item["title"])
-            result.append(b)
+            i = Item(item["link"], item["title"])
+            result.append(i)
+            print i.title
+            print i.url
         return result
 
+
     def trending(self):
-        user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
-        headers = { 'User-Agent' : user_agent }
-        # http response
-        status, response = self.http.request(self.BASE_URL + "/blog", 'GET', None, headers)
-        soup = BeautifulSoup(response)
-        blogs = []
+        all_trending = []
+        # get soup
+        soup = Soup(self.BASE_URL + "/blog")
+
         for a in soup.find("nav", {"class" : "blog-trending"}).findAll("a"):
             # construct blog object
-            b = Blog(self.BASE_URL + a.get("href"), a.get_text())
-            blogs.append(b)
+            i = Item(self.BASE_URL + a.get("href"), a.get_text())
+            all_trending.append(i)
 
-        return blogs
+        return all_trending
 
-class Blog(object):
+    def newest(self):
+        newest_posts = []
+
+        url = self.BASE_URL + BLOG
+        soup = Soup(url)
+        a_tags = soup.find("div", {"class":"blog_posts-list"}).findAll("a")
+        i = 0
+        for a_tag in a_tags:
+            url = self.BASE_URL + a_tag.get("href")
+            title = a_tag.get_text()
+            if i %10 == 1:
+                item = Item(url, title)
+                newest_posts.append(item)
+            i += 1
+        return newest_posts
+
+    def topic(self, topic):
+        if topic not in topics:
+            return "Topic not Found"
+        posts = []
+        url = topics[topic]
+        soup = Soup(url)
+        a_tags = soup.find("div", {"class":"blog_posts-list"}).findAll("a")
+        i = 0
+        for a_tag in a_tags:
+            url = self.BASE_URL + a_tag.get("href")
+            title = a_tag.get_text()
+            if i %10 == 1:
+                item = Item(url, title)
+                posts.append(item)
+            i += 1
+        return posts
+
+class Item(object):
     def __init__(self, url, title):
         self.url = url
         self.title = title
         self.content = ""
+        self.type = ""
 
     def content(self, http):
-        if self.content != "":
+        if self.content != "" and self.type == "blog":
             return self.content
-        # browser header
-        user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
-        headers = { 'User-Agent' : user_agent }
-        tatus, response = http.request(self.url, 'GET', None, headers)
-        soup = BeautifulSoup(response)
+        soup = Soup(self.url)
         # extract blog content
         self.content += soup.find("div", {"class":"content_body"}).get_text()
         return self.content
 
+    def set_type(self, t):
+        self.type = t
+
     def __str__(self):
-        return self.title + "\n" + self.url
+        return self.title + "\n" + self.url + "\n"
+
+class Freelencer(object):
+    def __init__(self, url, name):
+        self.name = name
+        self.url = url
+        self.tags = []
+
+    def set_tags(tags):
+        self.tags = tags
+
+    def __str__(self):
+        rep = self.name + "\n" + self.url + "\n"
+        for tag in self.tags:
+            rep += tag + " "
+        return rep
 
 if __name__ == "__main__":
 
     t = Toptal()
     #trending = t.trending()
     #print trending
-    #print t.search_blog("redis", 10)
+    #print t.search("infrastructure", 11, 10)
+
+    #for post in t.topic("backend"):
+    #    print post
 """
     test extracting blog content
 """
