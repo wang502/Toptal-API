@@ -10,7 +10,7 @@ from constants import BASE, BLOG, SEARCH_BASE, topics
 from utils import get_response, Soup
 from bs4 import BeautifulSoup
 import httplib2
-import io, json, os, re
+import io, json
 
 class Toptal(object):
 
@@ -35,7 +35,6 @@ class Toptal(object):
             print i.title
             print i.url
         return result
-
 
     def trending(self):
         all_trending = []

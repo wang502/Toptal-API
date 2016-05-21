@@ -1,0 +1,4 @@
+bs4==0.0.1
+httplib2==0.9
+click==5.0
+argparse==1.2.1
