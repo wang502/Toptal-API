@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: Toptal-API
+Version: 0.1.0
+Summary: Engineering Blogs for Hackers
+Home-page: https://github.com/wang502/Toptal-API
+Author: Seth Wang
+Author-email: sethwang199418@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: engineering blog command
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7

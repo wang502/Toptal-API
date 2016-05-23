@@ -4,10 +4,10 @@ import os, sys
 
 setup(
     name='Toptal-API',
-    vertion='0.1.0',
+    version='0.1.0',
     description='Engineering Blogs for Hackers',
     author='Seth Wang',
-    liscence='MIT',
+    license='MIT',
     classifiers=[
         # How mature is this project? Common values are
         #   3 - Alpha
@@ -24,7 +24,7 @@ setup(
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
     ],
-    keyword="engineering blog command",
+    keywords="engineering blog command",
     author_email='sethwang199418@gmail.com',
     url='https://github.com/wang502/Toptal-API',
     packages=find_packages(),
@@ -37,7 +37,7 @@ setup(
     ],
     entry_points={
         'console_scripts':[
-            'toptal=toptal.main',
+            'toptal=toptal:main',
         ],
     },
 )
