@@ -1,6 +1,6 @@
 #Toptal-API
 
-Toptal-API is a python library to look up engineering blogs of various topics (frontend, backend, database and etc). [Toptal](http://toptal.com)
+Toptal-API is a python library to look up engineering blogs of various topics from [Toptal.com](http://toptal.com) (frontend, backend, database and etc).
 
 ## Setup
 ### Install from source
@@ -12,6 +12,7 @@ Toptal-API is a python library to look up engineering blogs of various topics (f
 
 ## Usage
 ### Use as command line interface
+![screenshot](http://g.recordit.co/0Hx55o9oY7.gif)
 - look up trending engineering blogs
 ```
   $ toptal --trending=1
