@@ -39,11 +39,11 @@ def main(newest, topic, trending, search):
         return
 
     # prompt to choose item to read
-    choice = click.prompt('Choose the item you want to read: ')
+    choice = click.prompt('Choose the item you want to read')
     choice = int(choice)
     if choice > len(items):
         click.secho("Item not exists, please select again", fg="red")
-        choice = click.prompt('Choose the item you want to read: ')
+        choice = click.prompt('Choose the item you want to read')
         choice = int(choice)
 
     item_selected = items[choice-1]
