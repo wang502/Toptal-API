@@ -27,12 +27,26 @@ class Toptal(object):
         response = get_response(url)
         # convert to json object
         json_res = json.loads(response)
+        if "items" not in json_res:
+            return []
         items = json_res["items"]
 
         result = []
         for item in items:
-            i = Item(item["link"], item["title"])
-            result.append(i)
+            if item['title'].find("Hire") == -1:
+                i = Item(item["link"], item["title"])
+                result.append(i)
+
+        while len(result) < 10:
+            start += count
+            url = url = self.SEARCH_BASE + keyword + "&start=" + str(start) + "&count=" + str(count)
+            response = get_response(url)
+            json_res = json.loads(response)
+            items = json_res["items"]
+            for item in items:
+                if item['title'].find("Hire") == -1:
+                    i = Item(item["link"], item["title"])
+                    result.append(i)
         return result
 
     def trending(self):
