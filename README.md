@@ -15,7 +15,7 @@ Toptal-API is a python library to look up engineering blogs of various topics fr
 ![screenshot](http://g.recordit.co/3VUDBBoN0V.gif)
 - look up trending engineering blogs
 ```
-  $ toptal --trending=1
+  $ toptal --trending=true
   Trending engineering posts:
   1. The 10 Most Common Mistakes That Unity Developers Makeabout 13 hours ago
   http://toptal.com/unity-unity3d/top-unity-development-mistakes
@@ -43,7 +43,7 @@ Toptal-API is a python library to look up engineering blogs of various topics fr
 ```
 - Look up newest engineering blogs:
 ```
-  $ toptal --newest=1
+  $ toptal --newest=true
 ```
 - search engineering blogs based on topic:
 ```
