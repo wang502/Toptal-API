@@ -33,10 +33,12 @@ class Toptal(object):
 
         result = []
         for item in items:
+            # filter out the freelencer profile posts
             if item['title'].find("Hire") == -1:
                 i = Item(item["link"], item["title"])
                 result.append(i)
 
+        # return at least 10 search results
         while len(result) < 10:
             start += count
             url = url = self.SEARCH_BASE + keyword + "&start=" + str(start) + "&count=" + str(count)
@@ -44,6 +46,7 @@ class Toptal(object):
             json_res = json.loads(response)
             items = json_res["items"]
             for item in items:
+                # filter out the freelencer profile posts
                 if item['title'].find("Hire") == -1:
                     i = Item(item["link"], item["title"])
                     result.append(i)
@@ -53,7 +56,7 @@ class Toptal(object):
         all_trending = []
         # get soup
         soup = Soup(self.BASE_URL + "/blog")
-
+        # locate the html tags
         for a in soup.find("nav", {"class" : "blog-trending"}).findAll("a"):
             # construct blog object
             i = Item(self.BASE_URL + a.get("href"), a.get_text())
@@ -64,7 +67,7 @@ class Toptal(object):
 
     def newest(self):
         newest_posts = []
-
+        # compose url
         url = self.BASE_URL + BLOG
         soup = Soup(url)
         a_tags = soup.find("div", {"class":"blog_posts-list"}).findAll("a")
@@ -97,6 +100,7 @@ class Toptal(object):
             i += 1
         return posts
 
+# blog post 
 class Item(object):
     def __init__(self, url, title):
         self.url = url
