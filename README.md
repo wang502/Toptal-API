@@ -52,7 +52,7 @@ Toptal-API is a python library to look up engineering blogs of various topics fr
 ```
 - search engineering blogs based on topic:
 ```
-  $ toptal --topic=redis
+  $ toptal --topic=backend
 ```
 - search engineering blogs based on keyword:
 ```
