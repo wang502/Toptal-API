@@ -54,6 +54,7 @@ Toptal-API is a python library to look up engineering blogs of various topics fr
 ```
   $ toptal --topic=backend
 ```
+currently supported topic include: *frontend*, *backend*, *mobile*, *design*, *lifestyle*, *database*
 - search engineering blogs based on keyword:
 ```
   $ toptal --search=nodejs

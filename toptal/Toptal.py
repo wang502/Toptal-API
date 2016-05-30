@@ -100,7 +100,7 @@ class Toptal(object):
             i += 1
         return posts
 
-# blog post 
+# blog post
 class Item(object):
     def __init__(self, url, title):
         self.url = url
