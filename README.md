@@ -3,6 +3,11 @@
 Toptal-API is a python library to look up engineering blogs of various topics from [Toptal.com](http://toptal.com) (frontend, backend, database and etc).
 
 ## Setup
+### Install with *pip*
+```
+  $pip install Toptal-API
+```
+
 ### Install from source
 ```
   $ git clone git@github.com:wang502/Toptal-API.git
