@@ -43,7 +43,7 @@ def main(newest, topic, trending, search):
             click.secho(items[i-1].url + "\n", fg="green", bold=True)
 
     else:
-        click.echo("Options:\n--newest Find the newest engineering blog posts \n--topic Search engineering blog posts by topic (backend, frontend, mobile, design, data science, database... \n--trending Find the trending engineering posts \n--search Search engineering blog posts by keyword", fg="red", bold=True)
+        click.secho("Options:\n--newest Find the newest engineering blog posts \n--topic Search engineering blog posts by topic (backend, frontend, mobile, design, data science, database... \n--trending Find the trending engineering posts \n--search Search engineering blog posts by keyword", fg="red", bold=True)
         return
 
     # prompt to choose item to read

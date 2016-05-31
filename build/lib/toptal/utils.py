@@ -13,4 +13,4 @@ def get_response(url):
 # get soup
 def Soup(url):
     response = get_response(url)
-    return BeautifulSoup(response)
+    return BeautifulSoup(response,'html.parser')

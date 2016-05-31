@@ -4,7 +4,7 @@ import os, sys
 
 setup(
     name='Toptal-API',
-    version='0.1.0',
+    version='0.1.2',
     description='Engineering Blogs for Hackers',
     author='Seth Wang',
     license='MIT',
