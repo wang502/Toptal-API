@@ -62,7 +62,7 @@ currently supported topic include: **frontend**, **backend**, **mobile**, **desi
 ### Use as library in your python script
 ```python
   import toptal
-  toptal t;
+  t = Toptal()
   # search for blogs based on keyword, start from 1, search for 10 items
   posts1 = t.search('redis', 1, 10)
   # look up trending engineering blogs
