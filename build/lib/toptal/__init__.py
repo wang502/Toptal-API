@@ -31,9 +31,13 @@ def main(newest, topic, trending, search):
     elif topic:
         click.secho("Search result based on topic(" + topic + "):", fg="green", bold=True)
         items = t.topic(topic)
-        for i in range(1, 1+len(items)):
-            click.secho(str(i) + '. ' + items[i-1].title, fg="yellow", bold=True)
-            click.secho(items[i-1].url + "\n", fg="green", bold=True)
+        try:
+            for i in range(1, 1+len(items)):
+                click.secho(str(i) + '. ' + items[i-1].title, fg="yellow", bold=True)
+                click.secho(items[i-1].url + "\n", fg="green", bold=True)
+        except:
+            click.secho("Option: --topic Search engineering blog posts by topic (backend, frontend, mobile, design, data science, database) \n", fg="red", bold=True)
+            return
 
     elif trending:
         items = t.trending()
@@ -43,7 +47,7 @@ def main(newest, topic, trending, search):
             click.secho(items[i-1].url + "\n", fg="green", bold=True)
 
     else:
-        click.secho("Options:\n--newest Find the newest engineering blog posts \n--topic Search engineering blog posts by topic (backend, frontend, mobile, design, data science, database... \n--trending Find the trending engineering posts \n--search Search engineering blog posts by keyword", fg="red", bold=True)
+        click.secho("Options:\n--newest=true Find the newest engineering blog posts \n--topic=TEXT Search engineering blog posts by topic (backend, frontend, mobile, design, data science, database... \n--trending=true Find the trending engineering posts \n--search=TEXT Search engineering blog posts by keyword", fg="red", bold=True)
         return
 
     # prompt to choose item to read
