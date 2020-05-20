@@ -30,7 +30,7 @@ setup(
     packages=find_packages(),
     include_package_data= True,
     install_requires=[
-        "httplib2==0.9",
+        "httplib2==0.18.0",
         "click==5.0",
         "argparse==1.2.1",
         "bs4==0.0.1"
